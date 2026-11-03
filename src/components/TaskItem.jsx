@@ -47,7 +47,7 @@ export function TaskItem({ task }) {
         
         <div className="task__actions" onClick={(e) => e.stopPropagation()}>
           <Link to={taskLink} className="tool-btn" aria-label={`Редактировать задачу «${task.title}»`}>
-            <img src="/img/icons/edit.svg" alt="" width="21" height="21" />
+            <img src={`${import.meta.env.BASE_URL}img/icons/edit.svg`} alt="" width="21" height="21" />
           </Link>
           
           <button
