@@ -1003,6 +1003,35 @@ body {
   }
 }
 
+.modal-dialog {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: auto;
+  max-width: 100%;
+}
+
+.modal-dialog::backdrop {
+  background: rgba(7, 7, 7, 0.89);
+}
+
+@media (min-width: 1024px) {
+  .list-page {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
