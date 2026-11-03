@@ -15,7 +15,6 @@
     "react-router": "^7.0.0"
   },
   "devDependencies": {
-    "@kingironman2011/vite-pages": "^1.0.2",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
     "eslint-plugin-react-hooks": "^5.1.0",
