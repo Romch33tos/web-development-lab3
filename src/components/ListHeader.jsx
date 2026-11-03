@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useTodos } from '../state/TodoContext.jsx';
+import { ConfirmDialog } from './ConfirmDialog.jsx';
+import { usePageFocus } from '../hooks/usePageFocus.js';
 
 export function ListHeader({ list }) {
   const { dispatch } = useTodos();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(list.title);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const headingRef = usePageFocus();
 
   function handleRename(event) {
     event.preventDefault();
@@ -17,8 +21,8 @@ export function ListHeader({ list }) {
   }
 
   function handleRemove() {
-    if (!window.confirm(`Удалить список «${list.title}» и все его задачи?`)) return;
     dispatch({ type: 'list/removed', id: list.id });
+    setIsConfirmOpen(false);
     navigate('/');
   }
 
@@ -43,12 +47,23 @@ export function ListHeader({ list }) {
   }
 
   return (
-    <header className="list-header">
-      <h2 className="list-header__title">{list.title}</h2>
-      <div className="list-header__actions">
-        <button type="button" onClick={() => setIsEditing(true)}>Переименовать</button>
-        <button type="button" onClick={handleRemove}>Удалить</button>
-      </div>
-    </header>
+    <>
+      <header className="list-header">
+        <h2 className="list-header__title" tabIndex={-1} ref={headingRef}>
+          {list.title}
+        </h2>
+        <div className="list-header__actions">
+          <button type="button" onClick={() => setIsEditing(true)}>Переименовать</button>
+          <button type="button" onClick={() => setIsConfirmOpen(true)}>Удалить</button>
+        </div>
+      </header>
+
+      <ConfirmDialog
+        isOpen={isConfirmOpen}
+        title={`Удалить список «${list.title}» и все его задачи?`}
+        onConfirm={handleRemove}
+        onCancel={() => setIsConfirmOpen(false)}
+      />
+    </>
   );
 }
