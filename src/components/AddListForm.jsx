@@ -1,73 +1,43 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useTodos } from '../state/TodoContext.jsx';
 
-export function AddTaskForm({ listId }) {
+export function AddListForm() {
   const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [error, setError] = useState('');
   const { dispatch } = useTodos();
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
     const value = title.trim();
-    if (!value) {
-      setError('Please enter a task title');
-      return;
-    }
+    if (!value) return;
 
-    const newTask = {
+    const newList = {
       id: crypto.randomUUID(),
-      listId,
       title: value,
-      body: body.trim(),
-      done: false,
-      createdAt: Date.now(),
-      subtasks: [],
     };
 
-    dispatch({ type: 'task/added', task: newTask });
+    dispatch({ type: 'list/added', list: newList });
     setTitle('');
-    setBody('');
-    setError('');
+    navigate(`/lists/${newList.id}`);
   }
 
   return (
-    <form className="add-form" onSubmit={handleSubmit} noValidate>
-      <div className="add-form__inputs">
-        <label className="visually-hidden" htmlFor="new-task-title">
-          Task title
-        </label>
-        <input
-          id="new-task-title"
-          type="text"
-          value={title}
-          maxLength={100}
-          placeholder="Task Title..."
-          aria-invalid={error ? 'true' : undefined}
-          aria-describedby="new-task-error"
-          onChange={(e) => {
-            setTitle(e.target.value);
-            if (error) setError('');
-          }}
-        />
-        <label className="visually-hidden" htmlFor="new-task-body">
-          Task description
-        </label>
-        <input
-          id="new-task-body"
-          type="text"
-          value={body}
-          maxLength={200}
-          placeholder="Task body about this task..."
-          onChange={(e) => setBody(e.target.value)}
-        />
-      </div>
-      <button className="add-form__button" type="submit" aria-label="Add task">
-        <span className="add-form__plus" aria-hidden="true"></span>
+    <form className="add-list-form" onSubmit={handleSubmit}>
+      <label className="visually-hidden" htmlFor="new-list-title">
+        New list title
+      </label>
+      <input
+        id="new-list-title"
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="New list..."
+        maxLength={100}
+      />
+      <button type="submit" className="add-list-form__button">
+        Add
       </button>
-      <p className="add-form__error" id="new-task-error" aria-live="polite">
-        {error}
-      </p>
     </form>
   );
 }
