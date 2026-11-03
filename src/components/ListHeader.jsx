@@ -34,14 +34,15 @@ export function ListHeader({ list }) {
         </label>
         <input
           id="list-title-input"
+          className="add-list-form__input"
           type="text"
           value={title}
           maxLength={100}
           onChange={(e) => setTitle(e.target.value)}
           autoFocus
         />
-        <button type="submit">Сохранить</button>
-        <button type="button" onClick={() => setIsEditing(false)}>Отмена</button>
+        <button type="submit" className="alert__btn alert__btn--accent">Сохранить</button>
+        <button type="button" className="alert__btn" onClick={() => setIsEditing(false)}>Отмена</button>
       </form>
     );
   }
@@ -53,8 +54,8 @@ export function ListHeader({ list }) {
           {list.title}
         </h2>
         <div className="list-header__actions">
-          <button type="button" onClick={() => setIsEditing(true)}>Переименовать</button>
-          <button type="button" onClick={() => setIsConfirmOpen(true)}>Удалить</button>
+          <button type="button" className="alert__btn" onClick={() => setIsEditing(true)}>Переименовать</button>
+          <button type="button" className="alert__btn" onClick={() => setIsConfirmOpen(true)}>Удалить</button>
         </div>
       </header>
 
