@@ -10,20 +10,25 @@ function ListRoute() {
   return <ListPage key={listId} listId={listId} />;
 }
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { index: true, element: <HomePage /> },
+        {
+          path: 'lists/:listId',
+          element: <ListRoute />,
+          children: [
+            { path: 'tasks/:taskId', element: <TaskCard /> },
+          ],
+        },
+        { path: '*', element: <NotFoundPage /> },
+      ],
+    },
+  ],
   {
-    path: '/',
-    element: <Layout />,
-    children: [
-      { index: true, element: <HomePage /> },
-      {
-        path: 'lists/:listId',
-        element: <ListRoute />,
-        children: [
-          { path: 'tasks/:taskId', element: <TaskCard /> },
-        ],
-      },
-      { path: '*', element: <NotFoundPage /> },
-    ],
-  },
-]);
+    basename: '/web-development-lab3/',
+  }
+);
