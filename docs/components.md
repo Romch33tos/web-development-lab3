@@ -1,0 +1,25 @@
+# Дерево компонентов
+
+- **App** (обёртка провайдеров)
+  - **RouterProvider**
+    - **Layout** (общий каркас)
+      - `Sidebar`
+        - `AddListForm` (состояние: `title`)
+        - `ListNav` (контекст: `state.lists`, `state.tasks`)
+        - `ThemeToggle` (контекст: `theme`)
+      - `Main` (Outlet)
+        - **HomePage** (чтение: `state.lists`)
+        - **ListPage** (props: `listId`; контекст: `state`)
+          - `ListHeader` (props: `list`; состояние: `isEditing`, `isConfirmOpen`)
+          - `AddTaskForm` (props: `listId`; состояние: `title`, `body`, `error`)
+          - `TaskFilters` (чтение/запись URL search params)
+          - `TaskSearch` (props: `value`, `onChange`)
+          - `TaskList` (props: `tasks`)
+            - `TaskItem` (props: `task`)
+          - `TaskCard` (вложенный маршрут; контекст: `state`)
+            - `TaskTitleField` (props: `task`)
+            - `TaskDescriptionField` (props: `task`)
+            - `SubtaskList` (props: `task`)
+              - `SubtaskItem` (props: `taskId`, `subtask`)
+            - `AddSubtaskForm` (props: `taskId`)
+        - **NotFoundPage**
