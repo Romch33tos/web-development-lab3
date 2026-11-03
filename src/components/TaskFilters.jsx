@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router';
 
 const FILTERS = [
-  { key: 'all', label: 'Все' },
-  { key: 'active', label: 'Активные' },
-  { key: 'done', label: 'Выполненные' },
+  { key: 'all', label: 'All' },
+  { key: 'active', label: 'Active' },
+  { key: 'done', label: 'Done' },
 ];
 
 export function TaskFilters() {
@@ -21,7 +21,7 @@ export function TaskFilters() {
   }
 
   return (
-    <div className="task-filters" role="group" aria-label="Фильтр задач">
+    <div className="task-filters" role="group" aria-label="Task filters">
       {FILTERS.map((filter) => (
         <button
           key={filter.key}
