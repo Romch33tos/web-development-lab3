@@ -2,7 +2,7 @@ export function TaskSearch({ value, onChange, resultCount }) {
   return (
     <div className="task-search">
       <label className="visually-hidden" htmlFor="task-search-input">
-        Поиск по названию задачи
+        Search tasks
       </label>
       <input
         id="task-search-input"
@@ -10,10 +10,10 @@ export function TaskSearch({ value, onChange, resultCount }) {
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Поиск..."
+        placeholder="Search..."
       />
       <p className="visually-hidden" aria-live="polite">
-        Найдено задач: {resultCount}
+        Found tasks: {resultCount}
       </p>
     </div>
   );
