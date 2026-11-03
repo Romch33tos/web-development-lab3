@@ -30,7 +30,7 @@ export function ListHeader({ list }) {
     return (
       <form className="list-header" onSubmit={handleRename}>
         <label className="visually-hidden" htmlFor="list-title-input">
-          Название списка
+          List title
         </label>
         <input
           id="list-title-input"
@@ -41,8 +41,8 @@ export function ListHeader({ list }) {
           onChange={(e) => setTitle(e.target.value)}
           autoFocus
         />
-        <button type="submit" className="alert__btn alert__btn--accent">Сохранить</button>
-        <button type="button" className="alert__btn" onClick={() => setIsEditing(false)}>Отмена</button>
+        <button type="submit" className="alert__btn alert__btn--accent">Save</button>
+        <button type="button" className="alert__btn" onClick={() => setIsEditing(false)}>Cancel</button>
       </form>
     );
   }
@@ -54,14 +54,14 @@ export function ListHeader({ list }) {
           {list.title}
         </h2>
         <div className="list-header__actions">
-          <button type="button" className="alert__btn" onClick={() => setIsEditing(true)}>Переименовать</button>
-          <button type="button" className="alert__btn" onClick={() => setIsConfirmOpen(true)}>Удалить</button>
+          <button type="button" className="alert__btn" onClick={() => setIsEditing(true)}>Rename</button>
+          <button type="button" className="alert__btn" onClick={() => setIsConfirmOpen(true)}>Delete</button>
         </div>
       </header>
 
       <ConfirmDialog
         isOpen={isConfirmOpen}
-        title={`Удалить список «${list.title}» и все его задачи?`}
+        title={`Delete list "${list.title}" and all its tasks?`}
         onConfirm={handleRemove}
         onCancel={() => setIsConfirmOpen(false)}
       />
