@@ -6,6 +6,7 @@ export function TaskSearch({ value, onChange, resultCount }) {
       </label>
       <input
         id="task-search-input"
+        className="add-list-form__input"
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
