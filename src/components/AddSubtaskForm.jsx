@@ -25,17 +25,17 @@ export function AddSubtaskForm({ taskId }) {
   return (
     <form className="add-subtask-form" onSubmit={handleSubmit}>
       <label className="visually-hidden" htmlFor="new-subtask">
-        Новая подзадача
+        New subtask
       </label>
       <input
         id="new-subtask"
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Новая подзадача..."
+        placeholder="New subtask..."
         maxLength={100}
       />
-      <button type="submit">Добавить</button>
+      <button type="submit" className="alert__btn">Add</button>
     </form>
   );
 }
