@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/web-development-lab3/',
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
+    cssCodeSplit: false,
+    assetsInlineLimit: 100000000,
   }
 });
