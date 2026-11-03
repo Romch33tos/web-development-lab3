@@ -4,11 +4,13 @@ import { TaskTitleField } from './TaskTitleField.jsx';
 import { TaskDescriptionField } from './TaskDescriptionField.jsx';
 import { SubtaskList } from './SubtaskList.jsx';
 import { AddSubtaskForm } from './AddSubtaskForm.jsx';
+import { usePageFocus } from '../hooks/usePageFocus.js';
 
 export function TaskCard() {
   const { listId, taskId } = useParams();
   const [searchParams] = useSearchParams();
   const { state } = useTodos();
+  const headingRef = usePageFocus();
 
   const task = state.tasks.find(
     (t) => t.id === taskId && t.listId === listId
@@ -20,7 +22,7 @@ export function TaskCard() {
   if (!task) {
     return (
       <section className="task-card">
-        <h2>Задача не найдена</h2>
+        <h2 tabIndex={-1} ref={headingRef}>Задача не найдена</h2>
         <p>Возможно, она была удалена или перенесена.</p>
         <Link to={backLink}>Вернуться к списку</Link>
       </section>
@@ -32,8 +34,8 @@ export function TaskCard() {
 
   return (
     <section className="task-card" aria-labelledby="task-card-title">
-      <h2 id="task-card-title" className="visually-hidden">
-        Карточка задачи
+      <h2 id="task-card-title" className="visually-hidden" tabIndex={-1} ref={headingRef}>
+        Карточка задачи: {task.title}
       </h2>
       <TaskTitleField task={task} />
       <TaskDescriptionField task={task} />
