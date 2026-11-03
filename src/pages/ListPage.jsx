@@ -42,9 +42,9 @@ export function ListPage({ listId }) {
   if (!list) {
     return (
       <section className="not-found">
-        <h2>Список не найден</h2>
-        <p>Возможно, он был удалён.</p>
-        <Link to="/">На стартовую страницу</Link>
+        <h2>List not found</h2>
+        <p>It might have been deleted.</p>
+        <Link to="/">Go to Home Page</Link>
       </section>
     );
   }
@@ -75,9 +75,9 @@ export function ListPage({ listId }) {
 
       {isSearchEmpty && (
         <div className="search-empty">
-          <p>По запросу «{debouncedQuery}» ничего не найдено.</p>
+          <p>No tasks found for "{debouncedQuery}".</p>
           <button type="button" onClick={() => setQuery('')}>
-            Сбросить поиск
+            Clear search
           </button>
         </div>
       )}
