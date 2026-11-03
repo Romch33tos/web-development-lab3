@@ -13,7 +13,7 @@ export function TodoProvider({ children }) {
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
 
-  return <TodoContext value={value}>{children}</TodoContext>;
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 }
 
 export function useTodos() {
