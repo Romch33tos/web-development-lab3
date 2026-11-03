@@ -10,10 +10,10 @@ export function HomePage() {
 
   return (
     <section className="home-page">
-      <h2>Добро пожаловать!</h2>
-      <p>У вас пока нет списков задач.</p>
-      <p>Создайте первый список в боковой панели, чтобы начать.</p>
-      <Link to="/" className="home-page__link">Обновить</Link>
+      <h2>Welcome!</h2>
+      <p>You don't have any task lists yet.</p>
+      <p>Create your first list in the sidebar to get started.</p>
+      <Link to="/" className="home-page__link">Refresh</Link>
     </section>
   );
 }
