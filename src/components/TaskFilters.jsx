@@ -28,8 +28,8 @@ export function TaskFilters() {
           type="button"
           className={
             current === filter.key
-              ? 'task-filters__btn task-filters__btn--active'
-              : 'task-filters__btn'
+              ? 'alert__btn alert__btn--accent'
+              : 'alert__btn'
           }
           aria-pressed={current === filter.key}
           onClick={() => setFilter(filter.key)}
