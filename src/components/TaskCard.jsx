@@ -22,9 +22,9 @@ export function TaskCard() {
   if (!task) {
     return (
       <section className="task-card">
-        <h2 tabIndex={-1} ref={headingRef}>Задача не найдена</h2>
-        <p>Возможно, она была удалена или перенесена.</p>
-        <Link to={backLink}>Вернуться к списку</Link>
+        <h2 tabIndex={-1} ref={headingRef}>Task not found</h2>
+        <p>It might have been deleted.</p>
+        <Link to={backLink}>Back to list</Link>
       </section>
     );
   }
@@ -35,16 +35,16 @@ export function TaskCard() {
   return (
     <section className="task-card" aria-labelledby="task-card-title">
       <h2 id="task-card-title" className="visually-hidden" tabIndex={-1} ref={headingRef}>
-        Карточка задачи: {task.title}
+        Task Card: {task.title}
       </h2>
       <TaskTitleField task={task} />
       <TaskDescriptionField task={task} />
 
-      <h3 className="task-card__subtitle">Подзадачи</h3>
+      <h3 className="task-card__subtitle">Subtasks</h3>
       {total > 0 && (
         <p className="task-card__progress">
           <progress value={done} max={total} />
-          Выполнено {done} из {total}
+          Completed {done} of {total}
         </p>
       )}
 
@@ -52,7 +52,7 @@ export function TaskCard() {
       <AddSubtaskForm taskId={task.id} />
 
       <Link to={backLink} className="task-card__close">
-        Закрыть карточку
+        Close card
       </Link>
     </section>
   );
