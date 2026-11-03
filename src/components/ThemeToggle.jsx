@@ -10,7 +10,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-pressed={theme === 'dark'}
     >
-      {theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему'}
+      {theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
     </button>
   );
 }
