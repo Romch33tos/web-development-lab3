@@ -3,5 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/web-development-lab3/', 
+  base: '/web-development-lab3/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+  }
 });
