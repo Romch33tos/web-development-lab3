@@ -5,7 +5,7 @@ import { ThemeToggle } from './ThemeToggle.jsx';
 export function Sidebar() {
   return (
     <aside className="sidebar">
-      <h1 className="sidebar__title">Менеджер задач</h1>
+      <h1 className="sidebar__title">Task Manager</h1>
       <AddListForm />
       <ListNav />
       <ThemeToggle />
