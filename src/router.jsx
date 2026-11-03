@@ -1,4 +1,4 @@
-import { createBrowserRouter, useParams } from 'react-router';
+import { createHashRouter, useParams } from 'react-router';
 import { Layout } from './components/Layout.jsx';
 import { HomePage } from './pages/HomePage.jsx';
 import { ListPage } from './pages/ListPage.jsx';
@@ -10,7 +10,7 @@ function ListRoute() {
   return <ListPage key={listId} listId={listId} />;
 }
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <Layout />,
