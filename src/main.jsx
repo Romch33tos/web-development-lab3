@@ -16,7 +16,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
       <TodoProvider>
-        <RouterProvider router={router} />
+        <RouterProvider 
+          router={router} 
+          basename="/web-development-lab3" 
+        />
       </TodoProvider>
     </ThemeProvider>
   </StrictMode>
