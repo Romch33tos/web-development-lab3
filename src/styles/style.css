@@ -70,6 +70,7 @@ body {
   border: 0;
 }
 
+/* Общий макет (Layout) */
 .layout {
   display: flex;
   min-height: 100vh;
@@ -101,6 +102,7 @@ body {
   align-items: center;
 }
 
+/* Боковая панель: списки */
 .list-nav__list {
   list-style: none;
   display: flex;
@@ -138,6 +140,7 @@ body {
   border: 1px solid var(--color-border);
 }
 
+/* Боковая панель: формы и кнопки */
 .add-list-form {
   display: flex;
   flex-direction: column;
@@ -208,6 +211,7 @@ body {
   border-color: var(--color-accent);
 }
 
+/* Страница списка */
 .list-page {
   width: 100%;
   max-width: 600px;
@@ -236,6 +240,7 @@ body {
   gap: 8px;
 }
 
+/* Форма добавления задачи */
 .add-form {
   display: flex;
   flex-direction: row;
@@ -335,6 +340,7 @@ body {
   min-height: 16px;
 }
 
+/* Панель фильтров и поиска */
 .list-toolbar {
   display: flex;
   gap: 16px;
@@ -355,6 +361,7 @@ body {
   max-width: 250px;
 }
 
+/* Список задач */
 .task-list {
   list-style: none;
   display: flex;
@@ -455,29 +462,47 @@ body {
   opacity: 0.5;
 }
 
-.task__delete {
+/* Кнопки действий в строке задачи (карандаш и крестик) */
+.task__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.task__action-btn {
   width: 32px;
   height: 32px;
-  flex-shrink: 0;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s;
+  color: var(--color-text);
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  padding: 0;
+  text-decoration: none;
 }
 
-.task__delete:hover {
+.task__action-btn svg {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.task__action-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+button.task__action-btn:hover {
   border-color: var(--color-error);
+  color: var(--color-error);
 }
 
-.task__delete-icon {
-  width: 20px;
-  height: 20px;
-}
-
+/* Пустые состояния */
 .empty {
   display: flex;
   flex-direction: column;
@@ -521,6 +546,7 @@ body {
   cursor: pointer;
 }
 
+/* Карточка задачи (сайдбар справа) */
 .task-card {
   position: fixed;
   top: 0;
@@ -543,6 +569,9 @@ body {
   font-size: 28px;
   overflow-wrap: anywhere;
   cursor: text;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .task-card__desc {
@@ -550,6 +579,35 @@ body {
   font-size: 16px;
   overflow-wrap: anywhere;
   cursor: text;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Иконка карандаша в карточке */
+.task-card__title .edit-icon,
+.task-card__desc .edit-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.task-card__desc .edit-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.task-card__title:hover .edit-icon,
+.task-card__desc:hover .edit-icon {
+  opacity: 1;
+}
+
+.task-card__title:hover .edit-icon:hover,
+.task-card__desc:hover .edit-icon:hover {
+  color: var(--color-accent);
 }
 
 .task-card__title-field input,
@@ -660,6 +718,7 @@ progress {
   text-decoration: underline;
 }
 
+/* Модальное окно (dialog) */
 .modal-dialog {
   border: none;
   background: transparent;
@@ -695,11 +754,20 @@ progress {
   gap: 12px;
 }
 
+/* Фокус для доступности */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
+/* Убираем рамку у заголовков, которым мы программно ставим фокус */
+h1:focus,
+h2:focus,
+h3:focus {
+  outline: none;
+}
+
+/* Адаптивность */
 @media (max-width: 767px) {
   .layout {
     flex-direction: column;
