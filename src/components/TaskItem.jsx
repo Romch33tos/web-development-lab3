@@ -1,18 +1,21 @@
-import { Link, useSearchParams } from 'react-router';
+import { Link, useSearchParams, useNavigate } from 'react-router';
 import { useTodos } from '../state/TodoContext.jsx';
 
 export function TaskItem({ task }) {
   const { dispatch } = useTodos();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const doneSubtasks = task.subtasks.filter((s) => s.done).length;
   const totalSubtasks = task.subtasks.length;
 
-  function handleToggle() {
+  function handleToggle(e) {
+    e.stopPropagation();
     dispatch({ type: 'task/toggled', id: task.id });
   }
 
-  function handleRemove() {
+  function handleRemove(e) {
+    e.stopPropagation();
     dispatch({ type: 'task/removed', id: task.id });
   }
 
@@ -20,18 +23,19 @@ export function TaskItem({ task }) {
   const taskLink = `/lists/${task.listId}/tasks/${task.id}${queryString ? `?${queryString}` : ''}`;
 
   return (
-    <li className={task.done ? 'task-item task-item--done' : 'task-item'}>
-      <div className="task">
+    <li className={task.done ? 'task task--done' : 'task'}>
+      <div className="task" onClick={() => navigate(taskLink)} style={{ cursor: 'pointer' }}>
         <input
           className="task__check"
           type="checkbox"
           checked={task.done}
           onChange={handleToggle}
-          aria-label={`Mark "${task.title}" as done`}
+          onClick={(e) => e.stopPropagation()}
+          aria-label={`Отметить «${task.title}» выполненной`}
         />
         <div className="task__content">
           <h3 className="task__title">
-            <Link to={taskLink}>{task.title}</Link>
+            {task.title}
           </h3>
           {task.body && <p className="task__body">{task.body}</p>}
           {totalSubtasks > 0 && (
@@ -40,36 +44,24 @@ export function TaskItem({ task }) {
             </p>
           )}
         </div>
-        
-        <div className="task__actions">
-          {/* Кнопка редактирования (карандаш) */}
-          <Link 
-            to={taskLink} 
-            className="task__action-btn" 
-            aria-label={`Edit task "${task.title}"`}
-            title="Edit task"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 20h9"></path>
-              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-            </svg>
+
+        <div className="task__actions" onClick={(e) => e.stopPropagation()}>
+          <Link to={taskLink} className="tool-btn" aria-label={`Редактировать задачу «${task.title}»`}>
+            <img src={`${import.meta.env.BASE_URL}img/icons/edit.svg`} alt="" width="21" height="21" />
           </Link>
 
-          {/* Кнопка удаления (крестик) */}
           <button
-            className="task__action-btn"
+            className="task__delete"
             type="button"
             onClick={handleRemove}
-            aria-label={`Delete task "${task.title}"`}
-            title="Delete task"
+            aria-label={`Удалить задачу «${task.title}»`}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
+            <svg className="task__delete-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <line x1="10" y1="10" x2="22" y2="22" stroke="#FF8303" strokeWidth="2" strokeLinecap="round" />
+              <line x1="22" y1="10" x2="10" y2="22" stroke="#FF8303" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </button>
         </div>
-        
       </div>
     </li>
   );

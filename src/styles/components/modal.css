@@ -1,0 +1,34 @@
+.modal-dialog {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: auto;
+  max-width: 100%;
+}
+
+.modal-dialog::backdrop {
+  background: rgba(7, 7, 7, 0.89);
+}
+
+.alert {
+  width: 320px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.alert__title {
+  font-size: 18px;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.alert__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

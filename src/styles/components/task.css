@@ -1,0 +1,143 @@
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s;
+}
+
+.task:hover {
+  border-color: var(--color-accent);
+}
+
+.task__check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.task__check:checked {
+  border-color: var(--color-accent);
+}
+
+.task__check::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 6px;
+  height: 12px;
+  border: solid var(--color-accent);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform 0.15s;
+}
+
+.task__check:checked::after {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+.task__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task__title {
+  font-size: 18px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.task__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.task__title a:hover {
+  text-decoration: underline;
+}
+
+.task__body {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.task__progress {
+  font-size: 12px;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.task__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.tool-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.tool-btn:hover {
+  background: var(--color-bg);
+}
+
+.task--done .task__title,
+.task--done .task__body {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.task__delete {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+
+.task__delete:hover {
+  border-color: var(--color-error);
+}
+
+.task__delete-icon {
+  width: 20px;
+  height: 20px;
+}

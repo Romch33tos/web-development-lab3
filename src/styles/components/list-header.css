@@ -1,0 +1,19 @@
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.list-header__title {
+  font-size: 28px;
+  overflow-wrap: anywhere;
+}
+
+.list-header__actions {
+  display: flex;
+  gap: 8px;
+}
