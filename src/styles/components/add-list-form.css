@@ -1,0 +1,45 @@
+.add-list-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.add-list-form input,
+.add-list-form__input,
+.task-search input {
+  height: 36px;
+  padding: 0 10px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  text-align: left;
+  width: 100%;
+}
+
+.add-list-form input:focus,
+.add-list-form__input:focus,
+.task-search input:focus {
+  border-color: var(--color-accent);
+}
+
+.add-list-form__button {
+  height: 32px;
+  padding: 0 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.add-list-form__button:hover {
+  border-color: var(--color-accent);
+}
