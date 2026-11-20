@@ -47,7 +47,6 @@ export function TaskItem({ task }) {
         
         <div className="task__actions" onClick={(e) => e.stopPropagation()}>
           <Link to={taskLink} className="tool-btn" aria-label={`Редактировать задачу «${task.title}»`}>
-            {/* Иконка карандаша (редактирование) прямо в коде */}
             <svg 
               width="20" 
               height="20" 
@@ -71,8 +70,8 @@ export function TaskItem({ task }) {
             aria-label={`Удалить задачу «${task.title}»`}
           >
             <svg className="task__delete-icon" viewBox="0 0 32 32" aria-hidden="true">
-              <line x1="10" y1="10" x2="22" y2="22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <line x1="22" y1="10" x2="10" y2="22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <line x1="10" y1="10" x2="22" y2="22" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
+              <line x1="22" y1="10" x2="10" y2="22" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </button>
         </div>
